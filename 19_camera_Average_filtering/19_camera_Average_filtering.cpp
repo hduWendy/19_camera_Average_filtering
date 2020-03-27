@@ -16,7 +16,8 @@ int main()  //均值滤波
 	{
 		cv::Mat frame;
 		cv::Mat hsvMat;
-		cv::Mat averageMat;
+		cv::Mat blurMat;
+		cv::Mat GaussianBlurMat;
 
 		cap >> frame;
 		Size ResImgSiz = Size(frame.cols*scale, frame.rows*scale);
@@ -25,9 +26,11 @@ int main()  //均值滤波
 
 		cvtColor(rFrame, hsvMat, COLOR_BGR2HSV);
 
-		blur(rFrame, averageMat, Size(3, 3),Point(-1,-1));//均值滤波
+		blur(rFrame, blurMat, Size(3, 3),Point(-1,-1));//均值滤波
+		GaussianBlur(rFrame, GaussianBlurMat, Size(3, 3),1,0);
 
-		cv::imshow("whie: in the Average filtering", averageMat);
+		cv::imshow("blur: in the Average filtering", blurMat);
+		cv::imshow("GaussianBlur: in the Average filtering", GaussianBlurMat);
 		cv::imshow("frame", rFrame);
 
 		waitKey(30);
